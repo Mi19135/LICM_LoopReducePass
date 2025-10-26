@@ -1,0 +1,13 @@
+#pozicionirati se u fajl sa testovima 
+cd ~/llvm-project/llvm/lib/Transforms/LICMPass/tests
+
+#generisati ll fajlove od cpp
+clang -O0 -S -emit-llvm ime_fajla.cpp -o ime_fajla.ll
+
+
+#pozicionirati se u direktorijum gde se nalazi build
+cd ~/llvm-project/build
+
+#primer za simple_for_1.cpp fajl samo izmenite ime
+./bin/opt -load lib/LLVMOurPass.so -enable-new-pm=0 -licm-pass ../llvm/lib/Transforms/LICMPass/tests/simple_for_1.ll -S -o output_simple1.ll
+
