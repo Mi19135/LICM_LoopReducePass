@@ -1,10 +1,10 @@
-; ModuleID = 'nested_for_1.cpp'
-source_filename = "nested_for_1.cpp"
+; ModuleID = 'nested_do_while_1.cpp'
+source_filename = "nested_do_while_1.cpp"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-i128:128-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
 ; Function Attrs: mustprogress noinline nounwind optnone uwtable
-define dso_local void @_Z10foo_nestedv() #0 {
+define dso_local void @_Z16foo_nested_whilev() #0 {
   %1 = alloca i32, align 4
   %2 = alloca i32, align 4
   %3 = alloca i32, align 4
@@ -14,51 +14,45 @@ define dso_local void @_Z10foo_nestedv() #0 {
   store i32 0, ptr %2, align 4
   br label %6
 
-6:                                                ; preds = %27, %0
+6:                                                ; preds = %25, %0
   %7 = load i32, ptr %2, align 4
   %8 = icmp slt i32 %7, 3
-  br i1 %8, label %9, label %30
+  br i1 %8, label %9, label %28
 
 9:                                                ; preds = %6
   store i32 15, ptr %3, align 4
   store i32 0, ptr %4, align 4
   br label %10
 
-10:                                               ; preds = %23, %9
-  %11 = load i32, ptr %4, align 4
-  %12 = icmp slt i32 %11, 2
-  br i1 %12, label %13, label %26
-
-13:                                               ; preds = %10
+10:                                               ; preds = %22, %9
   store i32 14, ptr %5, align 4
-  %14 = load i32, ptr %3, align 4
-  %15 = load i32, ptr %5, align 4
-  %16 = add nsw i32 %14, %15
-  %17 = load i32, ptr %2, align 4
-  %18 = add nsw i32 %16, %17
-  %19 = load i32, ptr %4, align 4
-  %20 = add nsw i32 %18, %19
-  %21 = load i32, ptr %1, align 4
-  %22 = add nsw i32 %21, %20
-  store i32 %22, ptr %1, align 4
-  br label %23
+  %11 = load i32, ptr %3, align 4
+  %12 = load i32, ptr %5, align 4
+  %13 = add nsw i32 %11, %12
+  %14 = load i32, ptr %2, align 4
+  %15 = add nsw i32 %13, %14
+  %16 = load i32, ptr %4, align 4
+  %17 = add nsw i32 %15, %16
+  %18 = load i32, ptr %1, align 4
+  %19 = add nsw i32 %18, %17
+  store i32 %19, ptr %1, align 4
+  %20 = load i32, ptr %4, align 4
+  %21 = add nsw i32 %20, 1
+  store i32 %21, ptr %4, align 4
+  br label %22
 
-23:                                               ; preds = %13
-  %24 = load i32, ptr %4, align 4
-  %25 = add nsw i32 %24, 1
-  store i32 %25, ptr %4, align 4
-  br label %10, !llvm.loop !6
+22:                                               ; preds = %10
+  %23 = load i32, ptr %4, align 4
+  %24 = icmp slt i32 %23, 2
+  br i1 %24, label %10, label %25, !llvm.loop !6
 
-26:                                               ; preds = %10
-  br label %27
-
-27:                                               ; preds = %26
-  %28 = load i32, ptr %2, align 4
-  %29 = add nsw i32 %28, 1
-  store i32 %29, ptr %2, align 4
+25:                                               ; preds = %22
+  %26 = load i32, ptr %2, align 4
+  %27 = add nsw i32 %26, 1
+  store i32 %27, ptr %2, align 4
   br label %6, !llvm.loop !8
 
-30:                                               ; preds = %6
+28:                                               ; preds = %6
   ret void
 }
 
